@@ -4,6 +4,7 @@ function convertToAdjList(adjMatrix) {
     return adjList;
 }
 
+// Bonus Task:
 function convertToListToMatrix(adjList) {
     const size = adjList.length;
     const adjMatrix = Array.from({length: size}, () => Array(size).fill(0));
