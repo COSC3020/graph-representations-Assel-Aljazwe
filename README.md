@@ -16,7 +16,30 @@ depend on the number of vertices, the number of edges, or both?
 Describe your reasoning and the conclusion you've come to. Your reasoning is the
 most important part. Add your answer to this markdown file.
 
+### Converting an Adjacency Matrix to an Adjacency List:
+
+The runtime complexity of the conversion can be analyzed based on the operations the function performs:
+
+- The convertToAdjList function iterates over each row of the adjacency matrix with .map(), which takes $O(V)$ time, where $V$ is the number of vertices since there are $V$ rows.
+- For each row, it uses .flatMap() to iterate over each column, taking $O(V)$ time for each row since there are $V$ columns (in a square matrix).
+- The .flatMap() callback checks if an edge exists (hasEdge ? j : []) and constructs an array of connected vertices or an empty array based on the check. This operation is $O(1)$ for each element
+
+Thus, we find the overall runtime complexity to be $O(V^2)$, where $V$ is the number of vertices. This complexity arises from the fact that the function must check every cell in the adjacency matrix to determine if an edge exists between every pair of vertices.
+
+The complexity depends on the number of vertices squared and not directly on the number of edges E, because it still checks the spaces in the matrix where edges do not exist as well as where they do exist. For sparse graphs (graphs with small number of edges), this method is less efficient than it could be if it only had to consider existing edges.
+
 ## Bonus
 
 Implement a function to convert an adjacency list to an adjacency matrix and
 analyze it as above.
+
+### Converting an Adjacency List to Adjacency Matrix:
+
+Runtime Analysis:
+
+- The outer .forEach() iterates once for each vertex $O(V)$
+- The inner .forEach() iterates for each edge that emerges from any particular vertex. In total, across all iterations, it will run $E$ times, where $E$ is the total number of edges.
+- Setting an element in the matrix takes $O(1)$
+
+Therefore, the overall complexity is $O(V + E)$, since every vertex and every edge is considered exactly once here. This is more efficient than the matrix to list conversion for sparse graphs (little number of edges), as it directly correlates to the number of actual connection in the graph, rather than the maximum possible connections.
+
