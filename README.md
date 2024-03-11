@@ -43,3 +43,5 @@ Runtime Analysis:
 
 Therefore, the overall complexity is $O(V + E)$, since every vertex and every edge is considered exactly once here. This is more efficient than the matrix to list conversion for sparse graphs (little number of edges), as it directly correlates to the number of actual connection in the graph, rather than the maximum possible connections.
 
+**Edgeless Graph**: For a graph with no edges, the algorithm simply goes through all the nodes once to initialize the adjacency matrix with zeros, showing that there are no connections between any nodes. This setup is $O(V)$ as it prepares a V x V matrix to represent all possible connections. Since there are no edges ($E = 0$), the part of the algorithm that updates the matrix for each edge is skipped, making the entire process quite efficient for edgeless graphs. To summarize, for a graph without edges, the conversion focuses just on setting up the matrix based on the number of nodes.
+
