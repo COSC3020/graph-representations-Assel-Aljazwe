@@ -36,12 +36,11 @@ analyze it as above.
 ### Converting an Adjacency List to Adjacency Matrix:
 
 Runtime Analysis:
+- **Matrix Initialization**: First, a $V x V$ matrix is initialized where each cell is set to indicate the absence of an edge, typically done with zeros. This step is vital and it involves iterating through $V^2$ elements to set their initial values. The time complexity for this initialization is $O(V^2)$, as it goes through each cell of the matrix once.
+- **Populating the Matrix**: The conversion then iterates over the adjacency list to populate the matrix:
+  - The outer .forEach() iterates once for each vertex $O(V)$
+  - The inner .forEach() iterates for each edge that emerges from any particular vertex. In       total, across all iterations, it will run $E$ times, where $E$ is the total number of edges. $O(E)$
+- **Setting an Element**: For each edge found in the adjacency list, the corresponding element in the matrix is set to indicate the presence of an edge, which takes $O(1)$ per edge operation.
 
-- The outer .forEach() iterates once for each vertex $O(V)$
-- The inner .forEach() iterates for each edge that emerges from any particular vertex. In total, across all iterations, it will run $E$ times, where $E$ is the total number of edges.
-- Setting an element in the matrix takes $O(1)$
-
-Therefore, the overall complexity is $O(V + E)$, since every vertex and every edge is considered exactly once here. This is more efficient than the matrix to list conversion for sparse graphs (little number of edges), as it directly correlates to the number of actual connection in the graph, rather than the maximum possible connections.
-
-**Edgeless Graph**: For a graph with no edges, the algorithm simply goes through all the nodes once to initialize the adjacency matrix with zeros, showing that there are no connections between any nodes. This setup is $O(V)$ as it prepares a V x V matrix to represent all possible connections. Since there are no edges ($E = 0$), the part of the algorithm that updates the matrix for each edge is skipped, making the entire process quite efficient for edgeless graphs. To summarize, for a graph without edges, the conversion focuses just on setting up the matrix based on the number of nodes.
-
+**Conclusion**:
+The complexity of turning an adjacency list into a matrix is $O(V^2)$, largely due to the initial step of creating a matrix and filling it with zeros, which involves $V^2$ actions for V vertices. This step overshadows the subsequent process of marking connections between vertices, which adds $O(V+E)$ complexity. Therefore, we arrive to the conclusion that regardless of the graph's sparsity, the setup of the matrix is what primarily determines the conversion's overall complexity, making the entire operation $O(V^2)$.
